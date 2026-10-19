@@ -1135,8 +1135,8 @@ mod tests {
         assert_eq!(file.read(&mut decompressed).unwrap(), 12);
     }
 
-    /// Only on little endian because we cannot use fs with miri CI
-    #[cfg(all(target_endian = "little", not(miri)))]
+    /// Cannot use fs with miri CI
+    #[cfg(not(miri))]
     #[test]
     fn test_central_directory_not_at_end() {
         use super::ZipArchive;
